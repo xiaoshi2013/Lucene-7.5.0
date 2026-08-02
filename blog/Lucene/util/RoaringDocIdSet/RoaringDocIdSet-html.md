@@ -1,4 +1,11 @@
-# [RoaringDocIdSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/)
+---
+title: RoaringDocIdSet（Lucene 7.5.0）
+date: 2019-10-08 00:00:00
+tags: [docIdSet,docId,RoaringDocIdSet,Roaring]
+categories:
+- Lucene
+- gongjulei
+---
 
 &emsp;&emsp;RoaringDocIdSet的设计灵感来源于[RoaringBitmap](http://roaringbitmap.org)，Lucene根据自身需求有着自己的的实现方法，来实现对文档号的处理（存储，读取）。
 
@@ -106,7 +113,7 @@ docId >>> 16
 
 - 稀疏：使用short类型数组存储
 - 稠密：计算出那些未存储的文档号，然后使用short类型数组存储
-- 既不稀疏也不稠密：使用[FixedBitSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/45.html)存储
+- 既不稀疏也不稠密：使用[FixedBitSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/FixedBitSet)存储
 
 &emsp;&emsp;例如我们以下的文档号集合：
 
@@ -130,8 +137,8 @@ docId >>> 16
 
 &emsp;&emsp;RoaringDocIdSet提供了两种方法来读取文档号:
 
--	获取所有文档号：这种方法只需要逐个block数组的每一个元素，如果block使用short类型数组存储，那么顺序遍历该数组中的元素，如果使用[FixedBitSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/45.html)存储，其遍历方法见https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/45.html
--	判断某个文档号是否存在：根据下面的规则，找到该文档号属于block数组中的哪一个block，如果block使用short类型数组存储，那么使用**二分法**尝试在该数组中找，如果使用[FixedBitSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/45.html)存储，其查找方法见https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/45.html
+-	获取所有文档号：这种方法只需要逐个block数组的每一个元素，如果block使用short类型数组存储，那么顺序遍历该数组中的元素，如果使用[FixedBitSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/FixedBitSet)存储，其遍历方法见https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/FixedBitSet
+-	判断某个文档号是否存在：根据下面的规则，找到该文档号属于block数组中的哪一个block，如果block使用short类型数组存储，那么使用**二分法**尝试在该数组中找，如果使用[FixedBitSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/FixedBitSet)存储，其查找方法见https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0404/FixedBitSet
 
 ```java
     docId >>> 16
@@ -141,4 +148,4 @@ docId >>> 16
 
 &emsp;&emsp;个人觉得直接看源码应该比看我写的文章能更快的了解RoaringDocIdSet😁，所以点击这个链接看下吧：https://github.com/LuXugang/Lucene-7.5.0/blob/master/solr-7.5.0/lucene/core/src/java/org/apache/lucene/util/RoaringDocIdSet.java。
 
-[点击](http://www.amazingkoala.com.cn/attachment/Lucene/utils/RoaringDocIdSet/RoaringDocIdSet.zip)下载附件
+[点击](http://www.amazingkoala.com.cn/attachment/Lucene/utils/RamUsageEstimator/RamUsageEstimator.zip)下载附件

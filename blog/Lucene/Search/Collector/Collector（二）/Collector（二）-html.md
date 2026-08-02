@@ -1,6 +1,15 @@
+---
+title: Collector（二）（Lucene 7.5.0）
+date: 2019-08-13 00:00:00
+tags: [collector,indexSort]
+categories:
+- Lucene
+- Search
+---
+
 # [Collector（二）](https://www.amazingkoala.com.cn/Lucene/Search/)
 
-&emsp;&emsp;本文承接[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/82.html)，继续介绍其他的收集器。
+&emsp;&emsp;本文承接[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/Collector（一）)，继续介绍其他的收集器。
 
 &emsp;&emsp;图1是Lucene常用的几个Collector：
 
@@ -14,7 +23,7 @@
 
 ## PositiveScoresOnlyCollector
 
-&emsp;&emsp;PositiveScoresOnlyCollector首先过滤出文档的打分值大于0的文档号，然后将文档号交给封装的Collector，由于collect方法（collect方法的介绍见[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/82.html)）比较简单，故列出：
+&emsp;&emsp;PositiveScoresOnlyCollector首先过滤出文档的打分值大于0的文档号，然后将文档号交给封装的Collector，由于collect方法（collect方法的介绍见[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/Collector（一）)）比较简单，故列出：
 
 ```java
 public void collect(int doc) throws IOException {
@@ -24,7 +33,7 @@ public void collect(int doc) throws IOException {
 }
 ```
 
-&emsp;&emsp;其中in是PositiveScoresOnlyCollector封装的Collector，scorer即一个Scorer对象（见[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/82.html)）。
+&emsp;&emsp;其中in是PositiveScoresOnlyCollector封装的Collector，scorer即一个Scorer对象（见[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/Collector（一）)）。
 
 ## CachingCollector
 
@@ -32,7 +41,7 @@ public void collect(int doc) throws IOException {
 
 &emsp;&emsp;**CachingCollector缓存了哪些数据**：
 
-- List&lt;LeafReaderContext&gt;：在[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/82.html)中我们提到，LeafReaderContext描述的是一个段内的信息，当索引目录中存在多个段，那么我们需要用List来缓存所有的LeafReaderContext
+- List&lt;LeafReaderContext&gt;：在[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/Collector（一）)中我们提到，LeafReaderContext描述的是一个段内的信息，当索引目录中存在多个段，那么我们需要用List来缓存所有的LeafReaderContext
 - List&lt;int[ ]&gt; docs：一个段中可能有多个满足查询条件的文档，所以使用int[ ]来缓存那些文档的文档号，当索引目录中存在多个段时，需要用List来缓存每一个段中的所有文档号集合
 - List<float[ ]> scores：一个段中所有满足查询条件的文档的打分值使用float[ ]缓存，当索引目录中存在多个段时，需要用List来缓存每一个段中的所有文档的打分值集合
 
@@ -40,7 +49,7 @@ public void collect(int doc) throws IOException {
 
 ### CachingCollector缓存流程图
 
-&emsp;&emsp;图2是Collector处理文档的过程，每个流程点在[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/82.html)已作介绍，不赘述：
+&emsp;&emsp;图2是Collector处理文档的过程，每个流程点在[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/Collector（一）)已作介绍，不赘述：
 
 图2：
 
@@ -79,7 +88,7 @@ public void collect(int doc) throws IOException {
     - SimpleFieldCollector
     - PagingFieldCollector
 
-&emsp;&emsp;上文中我们给出了TopDocsCollector的7个子类，结合图2中的流程，他们之间的流程差异仅在于`处理该文档`这个流程点，即collect(int doc)方法的不同的实现（见[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/82.html)）
+&emsp;&emsp;上文中我们给出了TopDocsCollector的7个子类，结合图2中的流程，他们之间的流程差异仅在于`处理该文档`这个流程点，即collect(int doc)方法的不同的实现（见[Collector（一）](https://www.amazingkoala.com.cn/Lucene/Search/2019/0812/Collector（一）)）
 
 &emsp;&emsp;**故在下文中，只介绍每个Collector的collect(int doc)方法的具体实现**。
 

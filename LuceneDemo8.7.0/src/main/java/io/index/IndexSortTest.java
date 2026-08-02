@@ -73,6 +73,8 @@ public class IndexSortTest {
         reader.document(0);
 
         IndexSearcher searcher = new IndexSearcher(reader);
+        Query query = new TermQuery(new Term("content", "name"));
+        searcher.search(query, 1000);
     }
 
     public static void main(String[] args) throws Exception{

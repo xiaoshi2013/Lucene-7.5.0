@@ -1,7 +1,15 @@
-# [segments_N](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/)
-&emsp;&emsp;当IndexWriter执行commit()操作后，会生成一个segments_N文件，该文件描述了当前索引目录中所有有效的段信息文件(active segment info)，即之前文章介绍的[segmentInfo](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0605/63.html)文件，仅仅通过[flush()](https://www.amazingkoala.com.cn/Lucene/Index/2019/0716/74.html)生成的段成为无效的段信息文件。
+---
+title: 索引文件之segments_N（Lucene 7.5.0）
+date: 2019-06-10 00:00:00
+tags: [index, indexFile,segment_n]
+categories:
+- Lucene
+- suoyinwenjian
+---
 
-&emsp;&emsp;索引目录中可能存在多个Segments_N文件，每个Segment_N文件代表某次[commit()](https://www.amazingkoala.com.cn/Lucene/Index/2019/0906/91.html)时的索引状态，其中N值最大的Segments_N文件代表最新的一次提交，它包含当前索引目录中所有的索引信息。
+&emsp;&emsp;当IndexWriter执行commit()操作后，会生成一个segments_N文件，该文件描述了当前索引目录中所有有效的段信息文件(active segment info)，即之前文章介绍的[segmentInfo](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0605/索引文件之si)文件，仅仅通过[flush()](https://www.amazingkoala.com.cn/Lucene/Index/2019/0716/74.html)生成的段成为无效的段信息文件。
+
+&emsp;&emsp;索引目录中可能存在多个Segments_N文件，每个Segment_N文件代表某次[commit()](https://www.amazingkoala.com.cn/Lucene/Index/2019/0906/文档提交之commit（一）)时的索引状态，其中N值最大的Segments_N文件代表最新的一次提交，它包含当前索引目录中所有的索引信息。
 
 &emsp;&emsp;图1中最新的一次提交生成了Segments_5文件。
 
@@ -43,10 +51,10 @@
 ## Version
 &emsp;&emsp;Version描述的是segmentInfos对象发生更改的次数。
 
-&emsp;&emsp;segmentInfos对象的概念见文章[近实时搜索NRT（一）](https://www.amazingkoala.com.cn/Lucene/Index/2019/0916/93.html)中流程点`获得所有段的信息集合SegmentInfos`的介绍。
+&emsp;&emsp;segmentInfos对象的概念见文章[近实时搜索NRT（一）](https://www.amazingkoala.com.cn/Lucene/Index/2019/0916/NRT（一）)中流程点`获得所有段的信息集合SegmentInfos`的介绍。
 
 ## NameCounter
-&emsp;&emsp;NameCounter用来给新的[segmentInfo](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0605/63.html)文件提供名字的前缀值，例如下图中 _8 即为前缀值。
+&emsp;&emsp;NameCounter用来给新的[segmentInfo](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0605/索引文件之si)文件提供名字的前缀值，例如下图中 _8 即为前缀值。
 
 图5：
 
@@ -72,7 +80,7 @@
 ### SegName
 &emsp;&emsp;该字段描述了segmentInfo文件及对应的其他索引文件的名字前缀，图8中，下面所有的文件属于同一个segment，segName的值为"_1"
 
-&emsp;&emsp;在读取segment_N文件阶段，通过SegName找到[.si索引文件](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0605/63.html)，结合SegmentCommitInfo就可以获得一个段的完整的信息
+&emsp;&emsp;在读取segment_N文件阶段，通过SegName找到[.si索引文件](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0605/索引文件之si)，结合SegmentCommitInfo就可以获得一个段的完整的信息
 
 图8：
 
@@ -85,16 +93,16 @@
 &emsp;&emsp;该字段描述了segmentInfo文件编码值，例如"Lucene70"。
 
 ### DelGen
-&emsp;&emsp;该字段描述了属于同一个segment的[.liv](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0425/54.html)文件的迭代编号（generation number），它用来命名下一次生成的索引文件.liv，该字段的详细介绍见[构造IndexWriter对象（九）](https://www.amazingkoala.com.cn/Lucene/Index/2019/1205/114.html)。
+&emsp;&emsp;该字段描述了属于同一个segment的[.liv](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0425/索引文件之liv)文件的迭代编号（generation number），它用来命名下一次生成的索引文件.liv，该字段的详细介绍见[构造IndexWriter对象（九）](https://www.amazingkoala.com.cn/Lucene/Index/2019/1205/构造IndexWriter对象（九）)。
 
 ### DeletionCount
 &emsp;&emsp;该字段描述了segmentInfo文件中被删除文档的个数。
 
 ### FieldInfosGen
-&emsp;&emsp;该字段描述了属于同一个segment的[.fnm](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0606/64.html)文件的迭代编号（generation number），它用来命名下一次生成的索引文件.fnm，该字段的详细介绍见[构造IndexWriter对象（九）](https://www.amazingkoala.com.cn/Lucene/Index/2019/1205/114.html)。
+&emsp;&emsp;该字段描述了属于同一个segment的[.fnm](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/2019/0606/索引文件之fnm)文件的迭代编号（generation number），它用来命名下一次生成的索引文件.fnm，该字段的详细介绍见[构造IndexWriter对象（九）](https://www.amazingkoala.com.cn/Lucene/Index/2019/1205/构造IndexWriter对象（九）)。
 
 ### DocValuesGen
-&emsp;&emsp;该字段描述了属于同一个segment的[.dvm、.dvd](https://www.amazingkoala.com.cn/Lucene/DocValues/2019/0218/33.html)文件的迭代编号（generation number）， 它用来命名下一次生成的索引文件.dvd、.dvm，该字段的详细介绍见[构造IndexWriter对象（九）](https://www.amazingkoala.com.cn/Lucene/Index/2019/1205/114.html)
+&emsp;&emsp;该字段描述了属于同一个segment的[.dvm、.dvd](https://www.amazingkoala.com.cn/Lucene/DocValues/2019/0218/DocValues/)文件的迭代编号（generation number）， 它用来命名下一次生成的索引文件.dvd、.dvm，该字段的详细介绍见[构造IndexWriter对象（九）](https://www.amazingkoala.com.cn/Lucene/Index/2019/1205/构造IndexWriter对象（九）)
 
 ### SoftDelCount
 &emsp;&emsp;该字段记录软删除的文档个数，软删除的概念后面介绍文档的添加、删除、更新时会给出详细含义。
@@ -119,7 +127,7 @@
 <img src="http://www.amazingkoala.com.cn/uploads/lucene/索引文件/segments_N/10.png">
 
 # 结语
-&emsp;&emsp;至此介绍了本人在业务中接触过的所有的[索引文件](https://www.amazingkoala.com.cn/Lucene/suoyinwenjian/)（复合文件没有讲…😝），完全深入理解索引文件的所有内容需要了解IndexWriter添加、删除、更新文档、出错的逻辑，而写这篇文章的另一个目的也是为介绍IndexWriter作为预备知识。
+&emsp;&emsp;无
 
 [点击下载](http://www.amazingkoala.com.cn/attachment/Lucene/索引文件/segments_N.zip)Markdown文件
 

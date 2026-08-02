@@ -189,6 +189,11 @@
 #### 16. 强制合并ForceMerge
 
 - [ForceMerge（一）](https://www.amazingkoala.com.cn/Lucene/Index/2021/0527/191.html)
+- [ForceMerge（二）](https://www.amazingkoala.com.cn/Lucene/Index/2021/0603/192.html)
+
+#### 17. 段内排序IndexSort
+
+- [段内排序IndexSort（一）](https://www.amazingkoala.com.cn/Lucene/Index/2021/0915/201.html)
 
 
 # Search
@@ -252,9 +257,47 @@
 
 - [block-max-WAND（一）](https://www.amazingkoala.com.cn/Lucene/Search/2020/0916/167.html)
 
+#### 13. 查询TopN的优化之NumericDocValues
+
+- [查询TopN的优化之NumericDocValues（一）](https://www.amazingkoala.com.cn/Lucene/Search/2021/0621/193.html)
+- [查询TopN的优化之NumericDocValues（二）](https://www.amazingkoala.com.cn/Lucene/Search/2021/0629/195.html)
+
+#### 14. [IndexOrDocValuesQuery](https://www.amazingkoala.com.cn/Lucene/Search/2021/0701/196.html)
+
+#### 15. DisjunctionMaxQuery
+
+- [DisjunctionMaxQuery（一）](https://www.amazingkoala.com.cn/Lucene/Search/2021/0804/197.html)
+
+#### 16. GeoQuery
+
+- [GeoQuery（一）](https://www.amazingkoala.com.cn/Lucene/Search/2021/0817/198.html)
+- [GeoQuery（二）](https://www.amazingkoala.com.cn/Lucene/Search/2021/0902/200.html)
+
+#### 17. PointRangeQuery
+
+- [PointRangeQuery（一）](https://www.amazingkoala.com.cn/Lucene/Search/2021/1122/202.html)
+- [PointRangeQuery（二）](https://www.amazingkoala.com.cn/Lucene/Search/2021/1128/203.html)
+
+#### 18. IndexSortSortedNumericDocValuesRangeQuery
+
+- [IndexSortSortedNumericDocValuesRangeQuery（一）](https://www.amazingkoala.com.cn/Lucene/Search/2022/0314/204.html)
+
+#### 19. 段的多线程查询
+
+-  [段的多线程查询（一）](https://www.amazingkoala.com.cn/Lucene/Search/2023/0626/206.html)
+
+#### 20. BulkScorer
+
+- [BulkScorer（一）](https://www.amazingkoala.com.cn/Lucene/Search/2023/0707/207.html)
+- [BulkScorer（二）](https://www.amazingkoala.com.cn/Lucene/Search/2023/0724/208.html)
+
+
 # Util
 
-#### 1. [RoaringDocIdSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/1008/98.html)
+#### 1. RoaringDocIdSet
+
+- [RoaringDocIdSet（一）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/1008/98.html)
+- [RoaringDocIdSet（二）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2021/0623/194.html)
 
 #### 2. [Bkd-Tree](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/0422/52.html)
 
@@ -272,10 +315,13 @@
 
 #### 7. [RamUsageEstimator](https://www.amazingkoala.com.cn/Lucene/gongjulei/2019/1212/117.html)
 
-#### 8. [IndexedDISI（一）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2020/0511/140.html)
+#### 8. IndexedDISI
 
-#### 9. [IndexedDISI（二）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2020/0514/141.html)
+- [IndexedDISI（一）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2020/0511/140.html)
 
+- [IndexedDISI（二）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2020/0514/141.html)
+
+#### 8. [文档号收集器DocIdSet](https://www.amazingkoala.com.cn/Lucene/gongjulei/2021/0623/194.html)
 
 # 压缩存储
 
@@ -311,7 +357,10 @@
 
 #### 2. [SortedDocValues VS BinaryDocValues](https://www.amazingkoala.com.cn/Lucene/Search/2020/0715/155.html)
 
-#### 3. [两阶段遍历（TwoPhaseIterator）](https://www.amazingkoala.com.cn/Lucene/Search/2020/0723/156.html)
+#### 3. 两阶段遍历（TwoPhaseIterator）
+
+- [TwoPhaseIterator（一）](https://www.amazingkoala.com.cn/Lucene/Search/2020/0723/156.html)
+- [TwoPhaseIterator（二）](https://www.amazingkoala.com.cn/Lucene/Search/2023/0814/210.html)
 
 #### 4. [查找表（lookup table）](https://www.amazingkoala.com.cn/Lucene/gongjulei/2020/0514/141.html)
 
@@ -335,3 +384,20 @@
 - [PostingsEnum（一）](https://www.amazingkoala.com.cn/Lucene/Search/2020/0911/166.html)
 
 #### 8. [删除队列DeleteQueue](https://www.amazingkoala.com.cn/Lucene/Index/2020/0624/150.html)
+
+#### 9. [GeoHash编码](https://www.amazingkoala.com.cn/Lucene/Search/2021/0817/198.html)
+
+#### 10. [DocIdSetIterator](https://www.amazingkoala.com.cn/Lucene/Search/2023/0707/207.html)
+
+#### 11. Impact
+
+- [Impact（一）](https://www.amazingkoala.com.cn/Lucene/Search/2020/0904/165.html)
+- [Impact（二）](https://www.amazingkoala.com.cn/Lucene/Search/2023/0804/209.html)
+
+#### 12. [ImpactsDISI](https://www.amazingkoala.com.cn/Lucene/Search/2023/0804/209.html)
+
+#### 13. [Scorer](https://www.amazingkoala.com.cn/Lucene/Search/2023/0814/210.html)
+
+# OpenSearch
+
+#### 1. [OpenSearch-SQL调研](https://www.amazingkoala.com.cn/OpenSearch/2021/0819/199.html)
